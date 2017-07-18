@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game!</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<!-- Div containing title -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="text-center">So you like watching ESPN?</h1>
+			<p class="text-center">Let's see how much you know about sports!</p>
+		</div>
+	</div>
+	<!-- Div containing start button when the page is first loaded -->
+	<div id="intro" class="container text-center">
+		<button id="start" type="button" class="btn btn-default">START GAME</button>
+	</div>
+	<!-- Div showing time remaining -->
+	<div class="container">
+		<div class="row">
+			<div id="display" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+			</div>
+		</div>
+	</div>
+	<!-- Div containing the question -->
+	<div id="question" class="container text-center">
+
+	</div>
+	<!-- Div containing the answers as buttons -->
+	<div id="buttons" class="container-fluid text-center">
+		<!-- Create separate rows for the answers -->
+		<!-- Answer 1 -->
+		<div class="row">
+			<div id="answer1" class="answer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			</div>
+		</div>
+		<!-- Answer 2 -->
+		<div class="row">
+			<div id="answer2" class="answer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			</div>
+		</div>
+		<!-- Answer 3 -->
+		<div class="row">
+			<div id="answer3" class="answer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			</div>
+		</div>
+		<!-- Answer 4 -->
+		<div class="row">
+			<div id="answer4" class="answer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			</div>
+		</div>
+	</div>
+	<div id="results" class="container text-center">
+	</div>
+<!-- Div containing play again buttons -->
+	<div id="buttons" class="container-fluid text-center">
+		<div class="row">
+			<div id="restart" class="play col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			</div>
+		</div>
+	</div>
+</body>
+
+<!-- bootstrap jquery -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"
+	integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+	crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Jquery for the game -->
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Call the game JavaScript -->
+<script src="assets/javascript/app.js" type="text/javascript"></script>
+
+</html>
