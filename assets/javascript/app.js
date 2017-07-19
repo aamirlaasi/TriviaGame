@@ -41,7 +41,7 @@ var triviaArrays = {
 					 ["Thailand", "Congo", "India", "Belgium"],
 					 ["Bocci","Bowls", "Cups", "kabadi"],
 					 ["King","Pawn", "Bishop", "Queen"],
-					 ["Romelu Lukaku","Leonel Messi", "Pele", "Peter Beardlay"],
+					 ["Romelu Lukaku","Leonel Messi", "Pele", "Peter Beardsley"],
 					 ["George Best", "Roberto Baggio", "Lev Yashin", "Zico"]]
 
 }
@@ -70,8 +70,13 @@ var questionNumber = 0;
 var time;
 
 
-  // Start timing when a new question is displayed
+ // Start timing when a new question is displayed
 function start() {
+	// DONE: Use setInterval to start the count here and set the clock to running.
+    if (!clockRunning) {
+        intervalId = setInterval(count, 1000);
+        clockRunning = true;      	
+    }
 	// clear message
 	$("#message").empty();
 	// Set time at 30 seconds
@@ -85,17 +90,9 @@ function start() {
 	$("#answer2").html("<button type='button' class='btn btn-default'>" + triviaArrays.answerChoices[questionNumber][1] + "</button>");
 	$("#answer3").html("<button type='button' class='btn btn-default'>" + triviaArrays.answerChoices[questionNumber][2] + "</button>");
 	$("#answer4").html("<button type='button' class='btn btn-default'>" + triviaArrays.answerChoices[questionNumber][3] + "</button>");
-
-
-	// DONE: Use setInterval to start the count here and set the clock to running.
-    if (!clockRunning) {
-        intervalId = setInterval(count, 1000);
-        clockRunning = true;      	
-    }
-
   };
 
-//  Stop timing if time runs out
+//  Stop timing when this function is called
 function stop() {
 	    // DONE: Use clearInterval to stop the count here and set the clock to not be running.
 	    clearInterval(intervalId);
@@ -104,17 +101,17 @@ function stop() {
 	    questionNumber++;
 	};
   
-
+// This is the countdown for the timer
 function count() {
-
+	// If time hasn't run out then keep counting down and show time remaining
 	if(time > 0) {
-	    // DONE: decrement time by 1, remember we cant use "this" here.
+	    // decrement time by 1, remember we cant use "this" here.
 	    time--;
-	    // DONE: Use the variable we just created to show the time in the "display" div.    
+	    // Show the time remaining
 	    $("#display").html("<h3> Time Remaining : " + time + " seconds </h3>");
   	}
   	else {
-  		// stop the timer
+  		// If time has run out then stop the timer
   		stop();
   		// Record unanswered
   		unanswered++;
@@ -123,17 +120,21 @@ function count() {
 		// clear out other elements
 		clear();
   		// go to the next question if necessary after 5 second delay
-  		setTimeout(check,5000);
+  		setTimeout(check,3000);
   	}
   };
 
+// This function checks if all the questions in the array have been asked
 function check() {
-	if(questionNumber===10) {
+	// Check if you're at the last index of the question array
+	if(questionNumber>9) {
+		// Stop the timer (this may be need extraneous code)
 		stop();
 		// Empty out Divs for questions and answers and time
 		$("#display").empty();
 		$("#question").empty();
 		$(".answer").empty();
+		$("#message").empty();
 		// Record results
 		$("#results").html("<h1> Correct: " + wins + "</h1> <h1> Incorrect: " + losses + "</h1> <h1> Unanswered: " + unanswered + "</h1>");
 		// Show button to restart the game
@@ -145,6 +146,7 @@ function check() {
 	};
 };
 
+// This function will clear out all the variables and the divs
 function reset() {
 	// Set all variables to zero and empty out divs
 	wins = 0;
@@ -154,17 +156,17 @@ function reset() {
 	questionNumber = 0;
 	$("#results").empty();
 	$("#restart").empty();
+	$("#message").empty();
 };
 
+// Empty out Divs for questions and answers and time
 function clear() {
-	// Empty out Divs for questions and answers and time
 	$("#display").empty();
 	$("#question").empty();
 	$(".answer").empty();
 }
 
 // ---------------------------------------------------------
-
 // Create the onclick events for the game in this section
 // ---------------------------------------------------------
 
@@ -173,7 +175,7 @@ $("#start").on("click", start);
 
 // Execute the following when an answer is selected
 $("body").on("click", ".answer", function(event){
-	//answeredQuestion = true;
+
 	selectedAnswer = $(this).text();
 
 	if(selectedAnswer === triviaArrays.answers[questionNumber]) {
@@ -191,13 +193,13 @@ $("body").on("click", ".answer", function(event){
 		clear();
 		// Show that the wrong answer was selected
 		$("#message").html("<h1> You got it wrong!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
-
 	}
 
 	// stop timer
 	stop();
 	// check if all the questions have been posed and select new question
-	setTimeout(check, 5000);
+	// after 5 second delay showing message
+	setTimeout(check, 3000);
 });
 
 // Execute the following if the user wants to play again
