@@ -72,6 +72,8 @@ var time;
 
   // Start timing when a new question is displayed
 function start() {
+	// clear message
+	$("#message").empty();
 	// Set time at 30 seconds
 	time = 31;
 	// delete the start button
@@ -95,7 +97,6 @@ function start() {
 
 //  Stop timing if time runs out
 function stop() {
-
 	    // DONE: Use clearInterval to stop the count here and set the clock to not be running.
 	    clearInterval(intervalId);
 	    clockRunning = false;
@@ -153,8 +154,12 @@ function reset() {
 	$("#restart").empty();
 };
 
-// I need another function to show result in between questions
-// but I ran out of time.
+function clear() {
+	// Empty out Divs for questions and answers and time
+	$("#display").empty();
+	$("#question").empty();
+	$(".answer").empty();
+}
 
 // ---------------------------------------------------------
 
@@ -172,20 +177,25 @@ $("body").on("click", ".answer", function(event){
 	if(selectedAnswer === triviaArrays.answers[questionNumber]) {
 		// Add to wins
 		wins++; 
+		// clear out other elements		
+		clear();
 		// Show that the correct answer was selected
-		// $("#message").html("<h1> You got it right!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
+		$("#message").html("<h1> You got it right!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
 	}
 	else {
 		// Add to losses 
 		losses++;
+		// clear out other elements
+		clear();
 		// Show that the wrong answer was selected
-		// $("#message").html("<h1> You got it wrong!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
+		$("#message").html("<h1> You got it wrong!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
+
 	}
 
 	// stop timer
 	stop();
 	// check if all the questions have been posed and select new question
-	check();
+	setTimeout(check, 5000);
 });
 
 // Execute the following if the user wants to play again
