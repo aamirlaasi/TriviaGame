@@ -174,6 +174,8 @@ $("body").on("click", ".answer", function(event){
 		// Add to losses 
 		losses++;
 	}
+	// Run function to display the answer for 5 seconds
+
 	// stop timer
 	stop();
 	// check if all the questions have been posed and select new question
