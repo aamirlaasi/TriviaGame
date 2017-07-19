@@ -119,9 +119,11 @@ function count() {
   		// Record unanswered
   		unanswered++;
   		// Show time out message
-
-  		// go to the next question if necessary
-  		check();
+		$("#message").html("<h1> You ran out of Time!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
+		// clear out other elements
+		clear();
+  		// go to the next question if necessary after 5 second delay
+  		setTimeout(check,5000);
   	}
   };
 
