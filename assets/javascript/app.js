@@ -66,8 +66,9 @@ var clockRunning = false;
 // Keep track of questionNumber
 var questionNumber = 0;
 
-// Timer variable
+// Timer variables
 var time;
+
 
   // Start timing when a new question is displayed
 function start() {
@@ -116,8 +117,10 @@ function count() {
   		stop();
   		// Record unanswered
   		unanswered++;
-  		// go to the next questions
-  		start();
+  		// Show time out message
+
+  		// go to the next question if necessary
+  		check();
   	}
   };
 
@@ -129,7 +132,7 @@ function check() {
 		$("#question").empty();
 		$(".answer").empty();
 		// Record results
-		$("#results").html("<h1> Correct: " + wins + "</h1> <h1> Incorrect: " + losses + "</h1> <h1> Unanswered: " + unanswered);
+		$("#results").html("<h1> Correct: " + wins + "</h1> <h1> Incorrect: " + losses + "</h1> <h1> Unanswered: " + unanswered + "</h1>");
 		// Show button to restart the game
 		$("#restart").html('<button type="button" class="btn btn-default">PLAY AGAIN!</button>');
 	}
@@ -169,12 +172,15 @@ $("body").on("click", ".answer", function(event){
 	if(selectedAnswer === triviaArrays.answers[questionNumber]) {
 		// Add to wins
 		wins++; 
+		// Show that the correct answer was selected
+		// $("#message").html("<h1> You got it right!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
 	}
 	else {
 		// Add to losses 
 		losses++;
+		// Show that the wrong answer was selected
+		// $("#message").html("<h1> You got it wrong!</h1> <h1> " + triviaArrays.answers[questionNumber] + "</h1>");
 	}
-	// Run function to display the answer for 5 seconds
 
 	// stop timer
 	stop();
